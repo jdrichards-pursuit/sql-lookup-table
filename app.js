@@ -1,11 +1,15 @@
 // DEPENDENCIES
 const express = require("express");
+const cors = require("cors");
 
 // CONFIGURATION
 const app = express();
 
 // import the controller in order to tell the application to use the specific resource's controller
 const bookmarksController = require("./controllers/bookmarksController.js");
+
+// MIDDLEWARE PACKAGES
+app.use(cors());
 
 //MIDDLEWARE FOR CONTROLLERS
 // I want to use the bookMarkController routes with this base url
