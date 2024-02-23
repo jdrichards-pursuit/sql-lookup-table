@@ -10,6 +10,8 @@ const bookmarksController = require("./controllers/bookmarksController.js");
 
 // MIDDLEWARE PACKAGES
 app.use(cors());
+// needed for POST and PUT. Will parse the string sent from the fetch
+app.use(express.json());
 
 //MIDDLEWARE FOR CONTROLLERS
 // I want to use the bookMarkController routes with this base url

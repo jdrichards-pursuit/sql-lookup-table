@@ -22,5 +22,22 @@ bookmarks.get("/:id", (req, res) => {
   res.json({ bookmark });
 });
 
+bookmarks.post("/", (req, res) => {
+  //grab the information from the form
+
+  // console.log(req.body);
+
+  // i need to fake create a new id. i will take the last id number in the bookmarks array and add 1
+  const newId = bookmarksArray[bookmarksArray.length - 1].id + 1;
+  // req.body is an object. I will add an id to the object
+  req.body.id = newId;
+  console.log(req.body);
+  //because our data is of the type array I push to the array
+  bookmarksArray.push(req.body);
+  res.json({ bookmarks: bookmarksArray });
+
+  // create an id
+});
+
 // export line 5 bookmarks variable to be used in the app.js file
 module.exports = bookmarks;

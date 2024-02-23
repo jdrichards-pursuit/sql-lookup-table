@@ -32,6 +32,6 @@ module.exports = [
     name: "Youtube",
     url: "https://www.youtube.com",
     isFavorite: false,
-    category: "reacreational",
+    category: "recreational",
   },
 ];
