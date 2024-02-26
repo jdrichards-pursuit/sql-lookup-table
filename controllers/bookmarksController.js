@@ -5,7 +5,7 @@ const express = require("express");
 const bookmarks = express.Router();
 
 // I want to return the data as json from the model using my controller
-const bookmarksArray = require("../models/bookmark.model.js");
+let bookmarksArray = require("../models/bookmark.model.js");
 
 // create get route to return json data to the client
 
@@ -32,12 +32,30 @@ bookmarks.post("/", (req, res) => {
 
   // req.body is an object where I receive all the datat from the form. I will add an id to the object
   req.body.id = newId;
-  console.log(req.body);
 
   //add data to the end of the array
   bookmarksArray.push(req.body);
 
   // send back all the bookmarks because I plan to reset the setBookmarks state
+  res.json({ bookmarks: bookmarksArray });
+});
+
+bookmarks.put("/:id", (req, res) => {
+  const { id } = req.params;
+
+  const bookmarkIndex = bookmarksArray.findIndex((log) => log.id === +id);
+
+  if (bookmarkIndex > -1) bookmarksArray[bookmarkIndex] = req.body;
+
+  // send back all the bookmarks because I plan to reset the setBookmarks state
+  res.json({ bookmarks: bookmarksArray });
+});
+
+bookmarks.delete("/:id", (req, res) => {
+  const { id } = req.params;
+
+  bookmarksArray = bookmarksArray.filter((bookmark) => bookmark.id !== +id);
+
   res.json({ bookmarks: bookmarksArray });
 });
 
