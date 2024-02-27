@@ -1,6 +1,20 @@
 // we need to import express to create the router for the resource. In this case the resource is bookmarks
 const express = require("express");
 
+// local middleware
+// function myMiddleware(req, res, next) {
+//   // do something in here
+//   console.log("I am middleware");
+//   //required to use next to move to the next line of code
+//   next();
+// }
+
+function validateForm(req, res, next) {
+  if (!req.body.name || !req.body.category || !req.body.url)
+    res.status(400).json({ message: "Invalid Inputs" });
+  else next();
+}
+
 // we need to create a Router which is a way to reference in app.js this file
 const bookmarks = express.Router();
 
@@ -22,7 +36,7 @@ bookmarks.get("/:id", (req, res) => {
   res.json({ bookmark });
 });
 
-bookmarks.post("/", (req, res) => {
+bookmarks.post("/", validateForm, (req, res) => {
   //grab the information from the form
 
   // console.log(req.body);

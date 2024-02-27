@@ -8,7 +8,17 @@ const app = express();
 // import the controller in order to tell the application to use the specific resource's controller
 const bookmarksController = require("./controllers/bookmarksController.js");
 
+// middleware is just a function
+// function myMiddleware(req, res, next) {
+//   // do something in here
+//   console.log("I am middleware");
+//   //required to use next to move to the next line of code
+//   next();
+// }
+
+// Global Middleware
 // MIDDLEWARE PACKAGES
+// app.use(myMiddleware);
 app.use(cors());
 // needed for POST and PUT. Will parse the string sent from the fetch
 app.use(express.json());
