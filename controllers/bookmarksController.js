@@ -7,6 +7,8 @@ const {
   createBookmark,
 } = require("../queries/bookmarks");
 
+const { checkName, checkBoolean } = require("../validations/checkBookmarks");
+
 bookmarks.get("/", async (_req, res) => {
   const allBookmarks = await getAllBookmarks();
 
@@ -24,7 +26,7 @@ bookmarks.get("/:id", async (req, res) => {
   }
 });
 
-bookmarks.post("/", async (req, res) => {
+bookmarks.post("/", checkName, checkBoolean, async (req, res) => {
   try {
     const bookmark = await createBookmark(req.body);
     res.json(bookmark);
