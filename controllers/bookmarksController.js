@@ -1,6 +1,10 @@
 const express = require("express");
 
 const bookmarks = express.Router();
+
+const reviewsController = require('./reviewsController.js')
+
+
 const {
   getAllBookmarks,
   getBookmark,
@@ -10,6 +14,8 @@ const {
 } = require("../queries/bookmarks");
 
 const { checkName, checkBoolean } = require("../validations/checkBookmarks");
+
+bookmarks.use('/:bookmark_id/reviews', reviewsController)
 
 bookmarks.get("/", async (_req, res) => {
   const allBookmarks = await getAllBookmarks();
