@@ -1,19 +1,20 @@
 
-\c bookmarks_dev;
+\c recipe_joins;
 
-INSERT INTO bookmarks (name, url, category, is_favorite) VALUES
-('MDN', 'https://developer.mozilla.org/en-US/', 'educational', true),
-('Apartment Therapy', 'https://www.apartmenttherapy.com', 'inspirational', true),
-('DMV', 'https://dmv.ny.gov', 'adulting', true);
+INSERT INTO users (user_id, email) VALUES
+('1', 'jd@me.com'),
+('2', 'memo@me.com'),
+('3', 'caren@me.com');
 
-INSERT INTO reviews (bookmark_id, reviewer, title, content, rating )
-VALUES
-('1', 'Evan', 'My Favorite', 'This website crushes it when it comes to awesome explanations', 3),
-('2', 'Evan', 'My Favorite', 'This website crushes it when it comes to inspiring me', 3),
-('3', 'Evan', 'My Least Favorite', 'This website crushes it when it comes to destroying my patience', 5),
-('2', 'Juliana', 'I Love Going Here', 'I finally learned how to properly fold a fitted sheet', 5),
-('2', 'David', 'Cool Site', 'But I got way into adding decorative pillows everywhere', 1),
-('2', 'Mr. Mingo', 'So Helpful', 'I got some awesome recommendations for a ceiling fan and some spoons', 3),
-('2', 'Alison', 'A lifesaver!','Helped me get my stove cleaner than I ever imagiend possible!', 4),
-('3', 'Hannah', 'Insert Confetti Emoji Here', 'I survived 6 hours at the DMV!', 4),
-('3', 'Gabi', 'My Friend Hannah', 'Gets a discount if I leave a positive review, so here it is', 5);
+INSERT INTO categories (category_id, category_name ) VALUES
+('1', 'breakfast'),
+('2', 'lunch'),
+('3', 'dinner'),
+('4', 'dessert');
+
+
+INSERT INTO recipes(recipe_id, recipe_name, category_id, user_id) VALUES
+('1', 'macaroni and chese', '3','1'),
+('2', 'steak tartare', '3','1'),
+('3', 'eggs benedect', '1','1'),
+('4', 'veggie burger', '2','1');
